@@ -1,0 +1,19 @@
+config ALLWINNER_COMMON
+	tristate
+
+config WLAN_VENDOR_ALLWINNER
+	bool "Allwinner devices"
+	default y
+	---help---
+	  If you have a wireless card belonging to this class, say Y.
+
+	  Note that the answer to this question doesn't directly affect the
+	  kernel: saying N will just cause the configurator to skip all
+	  the questions about  cards. If you say Y, you will be asked for
+	  your specific card in the following questions.
+
+if WLAN_VENDOR_ALLWINNER
+
+source "drivers/net/wireless/allwinner/xr819/Kconfig"
+
+endif

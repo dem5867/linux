@@ -1,0 +1,62 @@
+config XR819
+       tristate "XR819 WLAN support"
+       depends on MAC80211
+       default n
+       help
+
+         This is an experimental driver for the XR819 chip-set.
+         Enabling this option enables the generic driver without
+         any platform support.
+         Please select the appropriate platform below.
+
+if XR819
+
+config XR819_SDIO
+	bool "SDIO bus wlan module"
+	depends on XR819
+	default y
+	---help---
+	  Say N here if module don't use sdio bus.
+	  If unsure, say Y.
+
+config XR819_NON_POWER_OF_TWO_BLOCKSIZES
+	bool "Platform supports non-power-of-two SDIO transfer"
+	depends on XR819
+	default y
+	---help---
+	  Say N here only if you are running the driver on a platform
+	  which does not have support for non-power-of-two SDIO transfer.
+	  If unsure, say Y.
+
+config XR819_USE_GPIO_IRQ
+	bool "Use GPIO interrupt"
+	depends on XR819
+	default y
+	---help---
+	  Say Y here if you want to include GPIO IRQ support instead of SDIO IRQ.
+	  If unsure, say N.
+
+config XR819_5GHZ_SUPPORT
+	bool "5GHz band support"
+	depends on XR819
+	default n
+	---help---
+	  Say Y if your device supports 5GHz band. If unsure, say N.
+
+config XR819_WAPI_SUPPORT
+	bool "WAPI support"
+	depends on XR819
+	default n
+	---help---
+	  Say Y if your compat-wireless support WAPI.
+	  If unsure, say N.
+
+config XR819_USE_EXTENSIONS
+	bool "Extensions for WFD and PS mode"
+	depends on XR819
+	default y
+	---help---
+	  Say Y if you want to include XR extensions
+	  If unsure, say Y.
+
+endif
